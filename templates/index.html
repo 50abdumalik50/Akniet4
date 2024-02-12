@@ -1,5 +1,10 @@
 {% extends 'base/base.html' %}
 
+
+{% block title %}
+    {{ website.title }}
+{% endblock %}
+
 {% block content %}
 
   <div class="overlay" data-overlay></div>
@@ -25,65 +30,15 @@
 
         <div class="slider-container has-scrollbar">
 
+            {% for slider in website.slider.all %}
           <div class="slider-item">
 
-            <img src="../static/assets/images/banner-1.jpg" alt="women's latest fashion sale" class="banner-img">
+            <img src="{{ slider.image.url }}" alt="women's latest fashion sale" class="banner-img">
 
-            <div class="banner-content">
 
-              <p class="banner-subtitle">Trending item</p>
-
-              <h2 class="banner-title">Women's latest fashion sale</h2>
-
-              <p class="banner-text">
-                starting at &dollar; <b>20</b>.00
-              </p>
-
-              <a href="#" class="banner-btn">Shop now</a>
-
-            </div>
 
           </div>
-
-          <div class="slider-item">
-
-            <img src="../static/assets/images/banner-2.jpg" alt="modern sunglasses" class="banner-img">
-
-            <div class="banner-content">
-
-              <p class="banner-subtitle">Trending accessories</p>
-
-              <h2 class="banner-title">Modern sunglasses</h2>
-
-              <p class="banner-text">
-                starting at &dollar; <b>15</b>.00
-              </p>
-
-              <a href="#" class="banner-btn">Shop now</a>
-
-            </div>
-
-          </div>
-
-          <div class="slider-item">
-
-            <img src="../static/assets/images/banner-3.jpg" alt="new fashion summer sale" class="banner-img">
-
-            <div class="banner-content">
-
-              <p class="banner-subtitle">Sale Offer</p>
-
-              <h2 class="banner-title">New fashion summer sale</h2>
-
-              <p class="banner-text">
-                starting at &dollar; <b>29</b>.99
-              </p>
-
-              <a href="#" class="banner-btn">Shop now</a>
-
-            </div>
-
-          </div>
+            {% endfor %}
 
         </div>
 
@@ -401,14 +356,14 @@
                     {% for product in crossy_products %}
                   <div class="showcase">
             
-                    <a href="#" class="showcase-img-box">
+                    <a href="{{ product.get_absolute_url }}" class="showcase-img-box">
                       <img src="{{ product.images.first }}" alt="pocket watch leather pouch" class="showcase-img"
                         width="70">
                     </a>
             
                     <div class="showcase-content">
             
-                      <a href="#">
+                      <a href="{{ product.get_absolute_url }}">
                         <h4 class="showcase-title">{{ product.title }}</h4>
                       </a>
             
